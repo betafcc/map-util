@@ -1,0 +1,15 @@
+{
+  "name": "@betafcc/map-util",
+  "version": "0.1.0",
+  "description": "Micro util for mapping on Maps and plain Objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["util"],
+  "author": "Beta Faccion <betafcc@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash.isplainobject": "4.0.6"
+  }
+}
