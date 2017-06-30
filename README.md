@@ -54,15 +54,33 @@ filter.key ( (k, v) => k.length > 1) ( dict ) // filter BY key
 // {}
 
 
+const levelDict = {
+  a: 1,
+  b: {
+    c: 2, 
+    d: {
+      e: 3,
+      f: 3
+    },
+    g: 2,
+    h: {
+      i: 3
+    }
+  },
+  d: 1
+};
+
 // Deep iterators:
 // Note that many Map-Like are not guaranteed
 // to be ordered (like plainObjects)
-[...iter.df(dict)] // Iterate depth First
-// [1, 2, 3, 4, 5]
-[...iter.levels(dict)]
-// [[1, 5], [2, 3], [4]]
-[...iter.bf.key(dict)]
-// ['a', 'c', 'ba', 'bb', 'bc', 'bca']
+[...iter.df(levelDict)]
+[ 1, 2, 3, 3, 2, 3, 1 ]
+
+[...iter.bf.key(levelDict)]
+[ 'a', 'b', 'd', 'c', 'd', 'g', 'h', 'e', 'f', 'i' ]
+
+[...iter.levels(levelDict)]
+[ [ 1, 1 ], [ 2, 2 ], [ 3, 3, 3 ] ]
 
 ```
 
@@ -86,6 +104,8 @@ mapUtil
 
     .filter(v => ...)(MapLike)
     .filter((v, k) => ...)(MapLike)
+    .filter.key(k => ...)(MapLike)
+    .filter.key((k, v) => ...)(MapLike)
 
     .iter.df(MapLike)
     .iter.df.key(MapLike)
@@ -104,16 +124,16 @@ TODO
         - [ ] Port to ES7+ or TypeScript ?
         - [ ] With or without browser-polyfills ?
     - [ ] Features:
-        - [ ] iter.leves // decide behavior
+        - [ ] iter.levels // decide behavior
         - [ ] addType :: conf -> MapUtil
         - [ ] equivalent :: MapLike a, MapLike b => a -> b -> bool
             Check if two MapLike are deep-equivalent
         - [ ] from :: conf -> MapUtil conf
         - [ ] of   :: MapUtil a => b -> a
-        - [ ] poly utils, to handle eg. { a: [ ['b', 1] ] }
+        - [ ] polymorphic utils, to handle eg. { a: [ ['b', 1] ] }
             - [ ] normalize
             - [ ] fmap
             - [ ] filter
-    - [ ] Expose non polymorphic functions (eg. object.fmap)
+    - [ ] Expose strict functions (eg. object.fmap)
         - [ ] To API
         - [ ] To specific bundles

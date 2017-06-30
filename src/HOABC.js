@@ -2,8 +2,7 @@
 TODO: A High-Order Abstract-Base-Class
 for the creation of Map classes
 
-The ABC must provide the Concrete Class
-with the mixins
+The ABC must provide mixins for the Concrete Class
 
 The need for it being High-Order is so the
 user can choose the names of the needed
