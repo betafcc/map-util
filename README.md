@@ -17,7 +17,13 @@ const {fmap, filter, to, iter} = require('@betafcc/map-util');
 const dict = { a: 1, b: { ba: 2, bb: 3, bc: { bca: 4 } }, c: 5 }
 
 const mapy =  to.map( dict )
-// Map(3) {"a" => 1, "b" => Map(3) {...}, "c" => 5}
+// Map {
+//  'a' => 1,
+//  'b' => Map {
+//          'ba' => 2,
+//          'bb' => 3,
+//          'bc' => Map { 'bca' => 4 } },
+//  'c' => 5 }
 
 const lispy = to.array ( dict )
  // [ [ 'a', 1 ],
@@ -29,12 +35,20 @@ const lispy = to.array ( dict )
 
 to.object( mapy )
 to.object( lispy )
+to.object( to.array( mapy ) )
+to.object( to.map( lispy ) )
 // { a: 1, b: { ba: 2, bb: 3, bc: { bca: 4 } }, c: 5 }
 
 fmap  ( v => v**2 ) ( dict )
 // { a: 1, b: { ba: 4, bb: 9, bc: { bca: 16 } }, c: 25 }
 fmap  ( v => v**2 ) ( mapy )
-// Map(3) {"a" => 1, "b" => Map(3) {...}, "c" => 25}
+// Map {
+//  'a' => 1,
+//  'b' => Map {
+//          'ba' => 4,
+//          'bb' => 9,
+//          'bc' => Map { 'bca' => 16 } },
+//  'c' => 25 }
 
 fmap.key  ( k => k.toUpperCase() ) ( dict )
 // { A: 1, B: { BA: 2, BB: 3, BC: { BCA: 4 } }, C: 5 }
@@ -57,7 +71,7 @@ filter.key ( (k, v) => k.length > 1) ( dict ) // filter BY key
 const levelDict = {
   a: 1,
   b: {
-    c: 2, 
+    c: 2,
     d: {
       e: 3,
       f: 3
@@ -118,13 +132,12 @@ mapUtil
 
 TODO
 ----
-    - [ ] Basic
+    - [X] Basic
     - [ ] Better Tests
     - [ ] Make dist Bundle
         - [ ] Port to ES7+ or TypeScript ?
         - [ ] With or without browser-polyfills ?
     - [ ] Features:
-        - [ ] iter.levels // decide behavior
         - [ ] addType :: conf -> MapUtil
         - [ ] equivalent :: MapLike a, MapLike b => a -> b -> bool
             Check if two MapLike are deep-equivalent

@@ -1,3 +1,5 @@
+const {inspect} = require('util');
+
 const configurations = require('./configurations.js');
 const {match} = require('./util.js');
 const {deep, shallow} = require('../mixins/fmap.js');

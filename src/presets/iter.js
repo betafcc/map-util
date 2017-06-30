@@ -1,3 +1,5 @@
+const {inspect} = require('util');
+
 const configurations = require('./configurations.js');
 const {match} = require('./util.js');
 const {depthFirst, breadthFirst, levels} = require('../mixins/iter.js');
@@ -17,6 +19,7 @@ iter.bf = obj =>
 
 iter.bf.key = obj => 
   breadthFirst.key(getConf(obj))(obj);
+
 
 iter.levels = obj => 
   levels.value(getConf(obj))(obj);
