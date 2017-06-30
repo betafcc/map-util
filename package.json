@@ -12,10 +12,12 @@
   "author": "Beta Faccion <betafcc@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@betafcc/is": "^1.3.0"
+    "@betafcc/is": "1.3.0"
   },
   "devDependencies": {
     "chai": "4.0.2",
+    "jsverify": "0.8.2",
+    "lodash": "4.17.4",
     "mocha": "3.4.2"
   }
 }

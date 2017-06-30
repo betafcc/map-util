@@ -5,7 +5,7 @@ const id = x => x;
 
 
 const isMapShapedArray = arr =>
-  is.not.array(arr) ? false :
+  is.not.array(arr)  ? false :
   arr.every(el =>
     is.array(el) &&
     (el.length === 2) &&
@@ -21,7 +21,7 @@ module.exports = {
     is   : isMapShapedArray
   },
   object : {
-    empty: () => {},
+    empty: () => {return {};},
     iter : Object.entries,
     set  : (o, k, v) => (o[k] = v, o),
     is   : is.plainObject
